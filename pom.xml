@@ -102,12 +102,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- DataBase数据库连接 mysql包-->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysqlVersion}</version>
-    </dependency>
 
     <!-- 数据库连接池-->
     <dependency>
@@ -163,6 +157,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.6</version>
+    </dependency>
 
   </dependencies>
 

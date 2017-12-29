@@ -5,7 +5,6 @@ import com.test.ssh.service.impl.TestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -19,12 +18,12 @@ public class MainController {
     private TestServiceImpl testService;
     @Autowired
     private PersonServiceImpl personServiceImpl;
-    @RequestMapping(value = "test", method = RequestMethod.GET)
+    @RequestMapping("test")
     public String test(){
         return 	testService.test();
     }
     @ResponseBody
-    @RequestMapping(value = "savePerson", method = RequestMethod.GET)
+    @RequestMapping("save")
     public String  savePerson(){
         System.out.println("===1==");
         personServiceImpl.savePerson();

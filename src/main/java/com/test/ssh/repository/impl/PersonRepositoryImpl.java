@@ -17,7 +17,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     private SessionFactory sessionFactory;
 
     private Session getCurrentSession() {
-        return this.sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
 

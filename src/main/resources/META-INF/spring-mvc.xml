@@ -12,17 +12,35 @@
     <!-- 启动注解驱动的spring MVC功能,注册请求url和注解POJO类方法的映射-->
     <mvc:annotation-driven />
     <!-- 对模型视图名称的解析,在请求时模型视图名称添加前后缀 -->
-    <context:component-scan base-package="com.test.ssh" />
+    <!--此处如果不到controller包，sessionFactory事物配置出错-->
+    <context:component-scan base-package="com.test.ssh.controller" />
+    <!-- 文件解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="views/" />      <!-- 前缀 -->
         <property name="suffix" value=".jsp" />   <!-- 后缀 -->
     </bean>
-
-<!--    &lt;!&ndash;这里是对静态资源的映射&ndash;&gt;
-    <mvc:resources mapping="/js/**" location="/resources/" />
-    <mvc:resources mapping="/css/**" location="/resources/" />
-    <mvc:resources mapping="/img/**" location="/resources/" />-->
+    <mvc:default-servlet-handler/>
+    <!-- 处理请求返回json字符串的中文乱码问题 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+   <!--拦截器-->
+    <!--<mvc:interceptors>
+        &lt;!&ndash; 多个拦截器，顺序执行 &ndash;&gt;
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:mapping path="/*.jsp"/>
+            <mvc:exclude-mapping path="/AdminLogin"/>
+            <mvc:exclude-mapping path="/StudentLogin"/>
+            <bean class="com.party.until.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
 
 </beans>
